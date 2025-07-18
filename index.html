@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derrick Machogu | Data Analyst</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Open Sans for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Colors */
+        :root {
+            /* Light Mode Colors */
+            --bg-overlay-color: rgba(248, 249, 250, 0.8); /* Semi-transparent overlay for background image */
+            --bg-section: rgba(255, 255, 255, 0.85); /* Semi-transparent background for sections */
+            --text-primary: #333; /* General text color */
+            --text-secondary: #555; /* Paragraph text color */
+            --text-light-accent: #666; /* Project small text */
+            --text-dark-accent: #2c3e50; /* Headings, default icon color */
+            --header-footer-bg: #2c3e50; /* Header and Footer background */
+            --header-footer-text: #fff; /* Header and Footer text */
+            --accent-primary: #1abc9c; /* Main accent color (teal) */
+            --accent-secondary: #3498db; /* Secondary accent color (blue) */
+            --skill-bg: rgba(236, 240, 241, 0.7); /* Semi-transparent skill card background */
+            --border-color: #ddd; /* Form input borders */
+            --shadow-color: rgba(0, 0, 0, 0.08); /* General box shadow */
+            --header-shadow: rgba(0, 0, 0, 0.15); /* Header/Footer shadow */
+            --skill-shadow: rgba(0, 0, 0, 0.05); /* Skill shadow */
+            --project-shadow: rgba(0, 0, 0, 0.05); /* Project shadow */
+            --modal-overlay-bg: rgba(0, 0, 0, 0.6); /* Modal overlay */
+            --modal-content-bg: #fff; /* Modal content background */
+            --modal-shadow: rgba(0, 0, 0, 0.2); /* Modal shadow */
+            --close-button-color: #888; /* Close button color */
+        }
+
+        /* Dark Mode Colors (overrides for system theme) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-overlay-color: rgba(0, 0, 0, 0.7); /* Darker overlay for body */
+                --bg-section: rgba(44, 44, 44, 0.85); /* Darker semi-transparent section background */
+                --text-primary: #e0e0e0; /* Lighter general text color */
+                --text-secondary: #c0c0c0; /* Lighter paragraph text color */
+                --text-light-accent: #a0a0a0; /* Darker project small text */
+                --text-dark-accent: #f0f0f0; /* Lighter headings, default icon color */
+                --header-footer-bg: #111111; /* Even darker header and footer */
+                --header-footer-text: #fff; /* Keep white */
+                --accent-primary: #2ecc71; /* Brighter green for accent */
+                --accent-secondary: #3498db; /* Keep original blue */
+                --skill-bg: rgba(58, 58, 58, 0.7); /* Darker semi-transparent skill card background */
+                --border-color: #555; /* Darker form input borders */
+                --shadow-color: rgba(255, 255, 255, 0.05); /* Lighter shadow for dark mode */
+                --header-shadow: rgba(255, 255, 255, 0.08); /* Lighter header/footer shadow */
+                --skill-shadow: rgba(255, 255, 255, 0.03); /* Lighter skill shadow */
+                --project-shadow: rgba(255, 255, 255, 0.03); /* Lighter project shadow */
+                --modal-overlay-bg: rgba(0, 0, 0, 0.8); /* Darker modal overlay */
+                --modal-content-bg: #333; /* Darker modal content background */
+                --modal-shadow: rgba(255, 255, 255, 0.1); /* Lighter modal shadow */
+                --close-button-color: #ccc; /* Lighter close button color */
+            }
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            color: var(--text-primary); /* Use CSS variable */
+            /* New background image properties */
+            background-image: url('https://i.pinimg.com/736x/31/3d/b5/313db5299dc1fcd438c1f1439238ef6d.jpg');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Keep image fixed when scrolling */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            position: relative; /* Needed for overlay */
+        }
+
+        /* Overlay to ensure readability on top of the image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-overlay-color); /* Use overlay color variable */
+            z-index: -1; /* Place behind content */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative; /* Ensure content is above the overlay */
+            z-index: 0;
+        }
+
+        /* Header */
+        header {
+            background: var(--header-footer-bg); /* Use CSS variable */
+            color: var(--header-footer-text); /* Use CSS variable */
+            padding: 30px 0;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 4px 10px var(--header-shadow); /* Use CSS variable */
+        }
+
+        .company-logo {
+            width: 112px;
+            height: 112px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            background-color: #fff; /* Keep white for logo background */
+            padding: 5px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        /* Header Buttons Container */
+        .header-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-button {
+            display: inline-block;
+            background: var(--accent-primary); /* Use CSS variable */
+            color: var(--header-footer-text); /* Use CSS variable */
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-primary) 50%, transparent); /* Dynamic shadow */
+            cursor: pointer;
+        }
+
+        .header-button.secondary {
+            background: var(--accent-secondary); /* Use CSS variable */
+            box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-secondary) 50%, transparent); /* Dynamic shadow */
+        }
+
+        .header-button:hover {
+            background: color-mix(in srgb, var(--accent-primary) 90%, black); /* Slightly darker on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px color-mix(in srgb, var(--accent-primary) 60%, transparent); /* Dynamic shadow */
+        }
+
+        .header-button.secondary:hover {
+            background: color-mix(in srgb, var(--accent-secondary) 90%, black); /* Slightly darker on hover */
+            box-shadow: 0 6px 15px color-mix(in srgb, var(--accent-secondary) 60%, transparent); /* Dynamic shadow */
+        }
+
+        .header-button i {
+            margin-right: 8px;
+        }
+
+
+        nav ul {
+            padding: 0;
+            list-style: none;
+            margin: 25px 0 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: var(--header-footer-text); /* Use CSS variable */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-primary); /* Use CSS variable */
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-primary); /* Use CSS variable */
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            background: var(--bg-section); /* Use semi-transparent background for sections */
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color); /* Use CSS variable */
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-dark-accent); /* Use CSS variable */
+            font-size: 2.5em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-primary); /* Use CSS variable */
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+
+        .skill {
+            padding: 25px;
+            background: var(--skill-bg); /* Use semi-transparent skill background */
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px var(--skill-shadow); /* Use CSS variable */
+        }
+
+        .skill:hover {
+            transform: translateY(-8px);
+            background: var(--accent-primary); /* Use CSS variable */
+            color: var(--header-footer-text); /* Use CSS variable */
+            box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-primary) 40%, transparent); /* Dynamic shadow */
+        }
+
+        .skill i {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: var(--text-dark-accent); /* Use CSS variable */
+            transition: color 0.3s ease;
+        }
+
+        .skill:hover i {
+            color: var(--header-footer-text); /* Use CSS variable */
+        }
+
+        .skill h3 {
+            margin: 0;
+            font-size: 1.3em;
+            color: var(--text-primary); /* Use CSS variable */
+            transition: color 0.3s ease;
+        }
+
+        .skill:hover h3 {
+            color: var(--header-footer-text); /* Use CSS variable */
+        }
+
+        /* Projects Section */
+        .project {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-section); /* Use semi-transparent background for projects */
+            border-left: 5px solid var(--accent-primary); /* Use CSS variable */
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--project-shadow); /* Use CSS variable */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px color-mix(in srgb, var(--project-shadow) 50%, transparent); /* Dynamic shadow */
+        }
+
+        .project h3 {
+            color: var(--text-dark-accent); /* Use CSS variable */
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: var(--text-secondary); /* Use CSS variable */
+            line-height: 1.6;
+        }
+
+        .project small {
+            color: var(--text-light-accent); /* Use CSS variable */
+            font-style: italic;
+        }
+
+        .web-design-button-container {
+            text-align: center;
+            margin-top: 40px; /* Space above the button */
+        }
+
+        .web-design-button {
+            display: inline-block;
+            background: var(--accent-secondary); /* Use secondary accent color for this button */
+            color: var(--header-footer-text);
+            padding: 15px 30px; /* Larger padding for a more prominent button */
+            text-decoration: none;
+            border-radius: 8px; /* Slightly more rounded */
+            font-weight: bold;
+            font-size: 1.2em; /* Larger font size */
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px color-mix(in srgb, var(--accent-secondary) 40%, transparent); /* More prominent shadow */
+            cursor: pointer;
+        }
+
+        .web-design-button:hover {
+            background: color-mix(in srgb, var(--accent-secondary) 90%, black); /* Darker secondary accent on hover */
+            transform: translateY(-4px); /* More pronounced lift effect */
+            box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-secondary) 50%, transparent); /* Enhanced shadow on hover */
+        }
+
+        .web-design-button i {
+            margin-right: 10px;
+        }
+
+
+        /* Education Section */
+        .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--bg-section); /* Use semi-transparent background for education */
+            border-left: 4px solid var(--accent-secondary); /* Use CSS variable */
+            border-radius: 5px;
+            box-shadow: 0 2px 8px var(--shadow-color); /* Use CSS variable */
+        }
+
+        .education-item h3 {
+            color: var(--text-dark-accent); /* Use CSS variable */
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            margin: 0;
+            color: var(--text-secondary); /* Use CSS variable */
+        }
+
+        .education-item ul {
+            list-style: disc;
+            margin-left: 20px;
+            padding: 0;
+            color: var(--text-secondary); /* Use CSS variable */
+        }
+
+        /* Contact Section */
+        form {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 30px;
+            background: var(--bg-section); /* Use semi-transparent background for form */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow-color); /* Use CSS variable */
+        }
+
+        form input, form textarea {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color); /* Use CSS variable */
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: var(--bg-section); /* Input background also semi-transparent */
+            color: var(--text-primary); /* Input text color */
+        }
+
+        form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        form button {
+            background: var(--header-footer-bg); /* Use CSS variable */
+            color: var(--header-footer-text); /* Use CSS variable */
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background: var(--accent-primary); /* Use CSS variable */
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: var(--text-dark-accent); /* Use CSS variable */
+            font-size: 2em;
+            margin: 0 12px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-primary); /* Use CSS variable */
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--header-footer-bg); /* Use CSS variable */
+            color: var(--header-footer-text); /* Use CSS variable */
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+            font-size: 0.9em;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            box-shadow: 0 -4px 10px var(--header-shadow); /* Use CSS variable */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .company-logo {
+                width: 80px; /* Adjust size for mobile */
+                height: 80px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .skill i {
+                font-size: 2.5em;
+            }
+
+            .skill h3 {
+                font-size: 1.1em;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+
+            form input, form textarea {
+                width: calc(100% - 20px);
+            }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay-bg); /* Use CSS variable */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--modal-content-bg); /* Use CSS variable */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px var(--modal-shadow); /* Use CSS variable */
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            color: var(--text-primary); /* Ensure modal text is readable */
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h3 {
+            color: var(--text-dark-accent); /* Use CSS variable */
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .modal-button {
+            display: block;
+            background: var(--accent-primary); /* Use CSS variable */
+            color: var(--header-footer-text); /* Use CSS variable */
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px color-mix(in srgb, var(--accent-primary) 30%, transparent); /* Dynamic shadow */
+        }
+
+        .modal-button.whatsapp {
+            background: #25d366; /* WhatsApp green */
+        }
+
+        .modal-button.instagram {
+            background: #c13584; /* Instagram purple/pink */
+        }
+
+        .modal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-primary) 40%, transparent); /* Dynamic shadow */
+        }
+
+        .modal-button.whatsapp:hover {
+            background: #128c7e;
+        }
+
+        .modal-button.instagram:hover {
+            background: #833ab4;
+        }
+
+        .modal-button i {
+            margin-right: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8em;
+            color: var(--close-button-color); /* Use CSS variable */
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover {
+            color: var(--text-dark-accent); /* Use CSS variable */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Company Logo Added Here -->
+            <img src="https://i.pinimg.com/736x/81/ba/6e/81ba6e16fcc2bf6e8f5a8bedb9f6cc64.jpg" alt="Company Logo" class="company-logo">
+            <h1>Derrick Machogu</h1>
+            <p>Passionate Data Analyst | JKUAT Graduate</p>
+            <div class="header-buttons">
+                <!-- Changed to a button that triggers the modal -->
+                <button id="viewProjectsBtn" class="header-button">
+                    <i class="fas fa-project-diagram"></i> View Projects
+                </button>
+                <!-- IMPORTANT: Replace "path/to/your/cv.pdf" with the actual link to your CV file -->
+                <a href="path/to/your/cv.pdf" download="Derrick_Machogu_CV.pdf" class="header-button secondary">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>My Skills 🛠️</h2>
+            <div class="skills-grid">
+                <div class="skill">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-chart-bar"></i> <!-- Changed icon for Power BI for clarity -->
+                    <h3>Power BI</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-file-excel"></i> <!-- Changed icon for Excel -->
+                    <h3>Excel</h3>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-r-project"></i>
+                    <h3>R</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-table"></i> <!-- Adding Tableau as a common data visualization tool -->
+                    <h3>Tableau</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Platforms (e.g., AWS, Azure)</h3> <!-- More specific for Big Data -->
+                </div>
+                <div class="skill">
+                    <i class="fas fa-brain"></i> <!-- Icon for Machine Learning -->
+                    <h3>Machine Learning</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-paint-brush"></i> <!-- Icon for Web Design -->
+                    <h3>Web Design</h3>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-cogs"></i> <!-- Icon for Web Management -->
+                    <h3>Web Management</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Featured Projects 📊</h2>
+            <div class="project">
+                <h3>Interactive Sales Dashboard with Power BI</h3>
+                <p>Developed a dynamic sales performance dashboard for a retail company, enabling real-time tracking of KPIs such as revenue, profit margins, and regional sales. Utilized Power Query for data cleaning and transformation, DAX for complex calculations, and various visualization techniques to highlight trends and anomalies. The dashboard led to a **15% improvement in sales strategy adjustments** within the first quarter.</p>
+                <p><small>Technologies: Power BI, Power Query, DAX</small></p>
+            </div>
+            <div class="project">
+                <h3>Customer Segmentation and Predictive Modeling (Python)</h3>
+                <p>Implemented a comprehensive customer segmentation project using Python (Pandas, Scikit-learn) and K-Means clustering to identify distinct customer groups based on purchasing behavior. Built a predictive model to forecast future customer lifetime value (CLTV). This analysis helped the marketing team tailor campaigns, resulting in a **10% increase in customer engagement**.</p>
+                <p><small>Technologies: Python (Pandas, NumPy, Scikit-learn), K-Means Clustering</small></p>
+            </div>
+            <div class="project">
+                <h3>Global COVID-19 Data Analysis and Trend Forecasting (SQL & Tableau)</h3>
+                <p>Conducted an in-depth analysis of global COVID-19 datasets, including case counts, vaccination rates, and mortality statistics. Utilized SQL for efficient data extraction and manipulation from large databases, and Tableau for creating interactive visualizations and dashboards. The project provided key insights into pandemic trends and supported **data-driven public health recommendations**.</p>
+                <p><small>Technologies: SQL, Tableau, Data Cleaning</small></p>
+            </div>
+
+            <!-- New action button for Web Designs -->
+            <div class="web-design-button-container">
+                <a href="your-web-designs-showcase.html" target="_blank" class="web-design-button">
+                    <i class="fas fa-laptop-code"></i> Explore Web Designs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2>Education 🎓</h2>
+            <div class="education-item">
+                <h3>Jomo Kenyatta University of Agriculture and Technology (JKUAT)</h3>
+                <p><strong>Bachelor's Degree in Data Science & Analytics</strong></p>
+                <p>September 2018 - December 2022</p>
+                <ul>
+                    <li>Specialized in statistical modeling, machine learning, and big data technologies.</li>
+                    <li>Completed a capstone project on <strong>Sales Performance Dashboard</strong>, demonstrating proficiency in end-to-end data analysis workflows.</li>
+                </ul>
+            </div>
+            <div class="education-item">
+                <h3>Certifications</h3>
+                <p><strong>Google Data Analytics Professional Certificate</strong></p>
+                <p>Completed: June 2023</p>
+            </div>
+            <!-- Added one more certification entry -->
+            <div class="education-item">
+                <p><strong>Microsoft Certified: Azure Data Scientist Associate</strong></p>
+                <p>Completed: August 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Get In Touch! 📧</h2>
+            <!-- Form now uses mailto: for submission -->
+            <form action="mailto:mambomachogu@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="Name" placeholder="Your Name" required>
+                <input type="email" name="Email" placeholder="Your Email" required>
+                <textarea name="Message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="social-links">
+                <!-- WhatsApp Icon -->
+                <a href="https://wa.me/254702453346" target="_blank" aria-label="WhatsApp Profile"><i class="fab fa-whatsapp"></i></a>
+                <!-- Instagram Icon -->
+                <a href="https://www.instagram.com/derick_machogu" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+                <!-- GitHub Icon -->
+                <a href="https://github.com/machoguderic" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <!-- Email/Message Icon now redirects to WhatsApp -->
+                <a href="https://wa.me/254702453346" target="_blank" aria-label="Message Me on WhatsApp"><i class="fas fa-envelope"></i></a>
+                <!-- Twitter Icon (kept as it was not explicitly asked to be removed) -->
+                <a href="https://twitter.com/YOUR_TWITTER_USERNAME" target="_blank" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Derrick Machogu. All rights reserved. Built with ❤️</p>
+        </div>
+    </footer>
+
+    <!-- Project Options Modal -->
+    <div id="projectOptionsModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalBtn">&times;</span>
+            <h3>Where would you like to view my projects?</h3>
+            <div class="modal-buttons">
+                <a href="https://wa.me/254702453346" target="_blank" class="modal-button whatsapp">
+                    <i class="fab fa-whatsapp"></i> View on WhatsApp
+                </a>
+                <a href="https://www.instagram.com/derick_machogu" target="_blank" class="modal-button instagram">
+                    <i class="fab fa-instagram"></i> View on Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get references to the elements
+        const viewProjectsBtn = document.getElementById('viewProjectsBtn');
+        const projectOptionsModal = document.getElementById('projectOptionsModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Function to show the modal
+        function showModal() {
+            projectOptionsModal.classList.add('active');
+        }
+
+        // Function to hide the modal
+        function hideModal() {
+            projectOptionsModal.classList.remove('active');
+        }
+
+        // Event listeners
+        viewProjectsBtn.addEventListener('click', showModal);
+        closeModalBtn.addEventListener('click', hideModal);
+        // Close modal if user clicks outside the content area
+        projectOptionsModal.addEventListener('click', (event) => {
+            if (event.target === projectOptionsModal) {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>
