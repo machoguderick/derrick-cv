@@ -654,6 +654,40 @@
             cursor: pointer;
         }
 
+        /* Floating Phone Call Icon */
+        .floating-call {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 2000;
+            background: #25d366;
+            color: #fff;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .floating-call:hover {
+            background: #128c7e;
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 600px) {
+            .floating-call {
+                bottom: 1rem;
+                right: 1rem;
+                width: 3rem;
+                height: 3rem;
+                font-size: 1.5rem;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -879,10 +913,9 @@
                 <button type="submit">Send Message</button>
             </form>
             <div class="social-links">
-                <a href="https://wa.me/254702453346" target="_blank" aria-label="WhatsApp Profile"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.instagram.com/derick_machogu" target="_blank" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/machoguderic" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-                <a href="https://wa.me/254702453346" target="_blank" aria-label="Message Me on WhatsApp"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/254702453346?text=hi%20am%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20and%20am%20intrested%20with%20your%20services.%20can%20i%20get%20more%20information%20about%20what%20you%20can%20do." target="_blank" aria-label="WhatsApp Profile"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:mambomachogu@gmail.com?subject=Service%20Inquiry&body=hi%20am..................and%20am%20intrested%20,%20can%20i%20get%20more%20info%20about%20your%20services" target="_blank" aria-label="Email Me"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/machoguderick" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
                 <a href="https://twitter.com/YOUR_TWITTER_USERNAME" target="_blank" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
@@ -909,6 +942,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Floating Phone Call Icon -->
+    <a href="tel:+254702453346" class="floating-call" title="Call Derrick Machogu">
+        <i class="fas fa-phone"></i>
+    </a>
 
     <script>
         // Mobile Menu Functionality
