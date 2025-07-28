@@ -48,7 +48,7 @@
                 --header-footer-text: #fff;
                 --accent-primary: #2ecc71;
                 --accent-secondary: #3498db;
-                --skill-bg: rgba(58, 58, 58, 0.7);
+                /* Original --skill-bg: rgba(58, 58, 58, 0.7); */
                 --border-color: #555;
                 --shadow-color: rgba(255, 255, 255, 0.05);
                 --header-shadow: rgba(255, 255, 255, 0.08);
@@ -59,6 +59,32 @@
                 --modal-shadow: rgba(255, 255, 255, 0.1);
                 --close-button-color: #ccc;
                 --mobile-menu-bg: rgba(17, 17, 17, 0.98);
+
+                /* New variables for light blue skills in dark mode */
+                --dm-skill-bg-dark: #ADD8E6; /* Light Blue for skill background */
+                --dm-skill-text-dark: #2c3e50; /* Dark blue-grey for text/icons on light blue */
+            }
+
+            /* Apply new variables to skill elements in dark mode */
+            .skill {
+                background: var(--dm-skill-bg-dark);
+            }
+            .skill i {
+                color: var(--dm-skill-text-dark);
+            }
+            .skill h3 {
+                color: var(--dm-skill-text-dark);
+            }
+            /* Ensure hover state still uses original dark mode accent and white text */
+            .skill:hover {
+                background: var(--accent-primary); /* This is #2ecc71 (green) in dark mode */
+                color: var(--header-footer-text); /* This is #fff in dark mode */
+            }
+            .skill:hover i {
+                color: var(--header-footer-text); /* This is #fff in dark mode */
+            }
+            .skill:hover h3 {
+                color: var(--header-footer-text); /* This is #fff in dark mode */
             }
         }
 
@@ -336,26 +362,6 @@
             box-shadow: 0 5px 15px color-mix(in srgb, var(--project-shadow) 50%, transparent);
         }
 
-        .project h3 {
-            color: var(--text-dark-accent);
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-        }
-
-        .project p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            margin-bottom: 0.5rem;
-        }
-
-        .project small {
-            color: var(--text-light-accent);
-            font-style: italic;
-            font-size: 0.85rem;
-        }
-
         .web-design-button-container {
             text-align: center;
             margin-top: 2.5rem;
@@ -394,27 +400,6 @@
             border-left: 4px solid var(--accent-secondary);
             border-radius: 5px;
             box-shadow: 0 2px 8px var(--shadow-color);
-        }
-
-        .education-item h3 {
-            color: var(--text-dark-accent);
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            font-size: clamp(1.1rem, 3vw, 1.3rem);
-        }
-
-        .education-item p {
-            margin: 0.3rem 0;
-            color: var(--text-secondary);
-            font-size: clamp(0.9rem, 3vw, 1rem);
-        }
-
-        .education-item ul {
-            list-style: disc;
-            margin: 0.5rem 0 0 1.5rem;
-            padding: 0;
-            color: var(--text-secondary);
-            font-size: clamp(0.9rem, 3vw, 1rem);
         }
 
         /* Contact Section */
@@ -678,6 +663,30 @@
             transform: scale(1.08);
         }
 
+        /* Animated Arrow for Floating Call Icon */
+        .animated-arrow {
+            position: fixed;
+            bottom: 6.5rem; /* Adjust position above the floating icon */
+            right: 3rem; /* Align with the icon */
+            z-index: 1999; /* Below the icon */
+            color: var(--accent-primary); /* Green color for the arrow */
+            font-size: 3rem; /* Large arrow icon */
+            animation: bounceArrow 1.5s infinite ease-in-out; /* Animation */
+            pointer-events: none; /* Allow clicks to pass through to elements below */
+            opacity: 0.9;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Subtle glow */
+        }
+
+        /* Keyframes for arrow animation */
+        @keyframes bounceArrow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px); /* Move up and down */
+            }
+        }
+
         @media (max-width: 600px) {
             .floating-call {
                 bottom: 1rem;
@@ -685,6 +694,11 @@
                 width: 3rem;
                 height: 3rem;
                 font-size: 1.5rem;
+            }
+            .animated-arrow {
+                bottom: 5rem; /* Adjust for smaller icon */
+                right: 2rem;
+                font-size: 2.5rem;
             }
         }
 
@@ -723,45 +737,106 @@
             }
 
             .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-                gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.7rem;
             }
 
             .skill {
-                min-height: 8rem;
-                padding: 1rem;
+                min-height: 7rem;
+                padding: 0.7rem;
+                font-size: 0.95rem;
             }
 
             .section {
-                padding: 2rem 0;
-                margin: 1rem auto;
+                padding: 1.2rem 0;
+                margin: 0.7rem auto;
+            }
+
+            .project {
+                padding: 0.8rem;
+                font-size: 0.97rem;
             }
 
             .education-item {
-                padding: 1rem;
+                padding: 0.8rem;
             }
 
             form {
+                padding: 0.7rem;
+            }
+
+            .modal-content {
                 padding: 1rem;
+                max-width: 95vw;
             }
         }
 
         @media (max-width: 480px) {
             .skills-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                overflow-x: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                scroll-snap-type: x mandatory;
             }
-
+            .skill {
+                min-width: 70vw;
+                flex: 0 0 auto;
+                scroll-snap-align: start;
+                margin-right: 0.5rem;
+            }
             .project {
-                padding: 1rem;
+                padding: 0.6rem;
+                font-size: 0.93rem;
             }
-
             .education-item ul {
-                margin-left: 1rem;
+                margin-left: 0.7rem;
             }
-
             .social-links a {
-                margin: 0 0.5rem;
+                margin: 0 0.4rem;
             }
+            .section h2 {
+                font-size: 1.2rem;
+            }
+            .modal-content {
+                padding: 0.5rem;
+            }
+        }
+
+        /* --- New Animation Styles --- */
+
+        /* Base styles for elements that will animate */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform; /* Optimize for animation */
+        }
+
+        /* Specific animation for skills (fade-in and slight scale) */
+        .skill.animate-on-scroll {
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Specific animation for projects (slide-in from left) */
+        .project.animate-on-scroll {
+            transform: translateX(-50px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        /* Specific animation for education items (fade-in and slide-up) */
+        .education-item.animate-on-scroll {
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Class added when element is visible */
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1) translateX(0);
         }
     </style>
 </head>
@@ -808,43 +883,43 @@
         <div class="container">
             <h2>My Skills 🛠️</h2>
             <div class="skills-grid">
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-database"></i>
                     <h3>SQL</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fab fa-python"></i>
                     <h3>Python</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-chart-bar"></i>
                     <h3>Power BI</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-file-excel"></i>
                     <h3>Excel</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fab fa-r-project"></i>
                     <h3>R</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-table"></i>
                     <h3>Tableau</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-cloud"></i>
                     <h3>Cloud Platforms</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-brain"></i>
                     <h3>Machine Learning</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-paint-brush"></i>
                     <h3>Web Design</h3>
                 </div>
-                <div class="skill">
+                <div class="skill animate-on-scroll">
                     <i class="fas fa-cogs"></i>
                     <h3>Web Management</h3>
                 </div>
@@ -855,24 +930,24 @@
     <section id="projects" class="section">
         <div class="container">
             <h2>Featured Projects 📊</h2>
-            <div class="project">
+            <div class="project animate-on-scroll">
                 <h3>Interactive Sales Dashboard with Power BI</h3>
                 <p>Developed a dynamic sales performance dashboard for a retail company, enabling real-time tracking of KPIs such as revenue, profit margins, and regional sales. Utilized Power Query for data cleaning and transformation, DAX for complex calculations, and various visualization techniques to highlight trends and anomalies. The dashboard led to a <strong>15% improvement in sales strategy adjustments</strong> within the first quarter.</p>
                 <p><small>Technologies: Power BI, Power Query, DAX</small></p>
             </div>
-            <div class="project">
+            <div class="project animate-on-scroll">
                 <h3>Customer Segmentation and Predictive Modeling (Python)</h3>
                 <p>Implemented a comprehensive customer segmentation project using Python (Pandas, Scikit-learn) and K-Means clustering to identify distinct customer groups based on purchasing behavior. Built a predictive model to forecast future customer lifetime value (CLTV). This analysis helped the marketing team tailor campaigns, resulting in a <strong>10% increase in customer engagement</strong>.</p>
                 <p><small>Technologies: Python (Pandas, NumPy, Scikit-learn), K-Means Clustering</small></p>
             </div>
-            <div class="project">
+            <div class="project animate-on-scroll">
                 <h3>Global COVID-19 Data Analysis and Trend Forecasting (SQL & Tableau)</h3>
                 <p>Conducted an in-depth analysis of global COVID-19 datasets, including case counts, vaccination rates, and mortality statistics. Utilized SQL for efficient data extraction and manipulation from large databases, and Tableau for creating interactive visualizations and dashboards. The project provided key insights into pandemic trends and supported <strong>data-driven public health recommendations</strong>.</p>
                 <p><small>Technologies: SQL, Tableau, Data Cleaning</small></p>
             </div>
 
             <div class="web-design-button-container">
-                <a href="your-web-designs-showcase.html" target="_blank" class="web-design-button">
+                <a href="https://www.pinterest.com/derickmachogu" target="_blank" class="web-design-button animate-on-scroll">
                     <i class="fas fa-laptop-code"></i> Explore Web Designs
                 </a>
             </div>
@@ -882,7 +957,7 @@
     <section id="education" class="section">
         <div class="container">
             <h2>Education 🎓</h2>
-            <div class="education-item">
+            <div class="education-item animate-on-scroll">
                 <h3>Jomo Kenyatta University of Agriculture and Technology (JKUAT)</h3>
                 <p><strong>Bachelor's Degree in Data Science & Analytics</strong></p>
                 <p>September 2018 - December 2022</p>
@@ -891,12 +966,12 @@
                     <li>Completed a capstone project on <strong>Sales Performance Dashboard</strong>, demonstrating proficiency in end-to-end data analysis workflows.</li>
                 </ul>
             </div>
-            <div class="education-item">
+            <div class="education-item animate-on-scroll">
                 <h3>Certifications</h3>
                 <p><strong>Google Data Analytics Professional Certificate</strong></p>
                 <p>Completed: June 2023</p>
             </div>
-            <div class="education-item">
+            <div class="education-item animate-on-scroll">
                 <p><strong>Microsoft Certified: Azure Data Scientist Associate</strong></p>
                 <p>Completed: August 2024</p>
             </div>
@@ -906,16 +981,17 @@
     <section id="contact" class="section">
         <div class="container">
             <h2>Get In Touch! 📧</h2>
-            <form action="mailto:mambomachogu@gmail.com" method="post" enctype="text/plain">
+            <form action="mailto:mambomachogu@gmail.com" method="post" enctype="text/plain" class="animate-on-scroll">
                 <input type="text" name="Name" placeholder="Your Name" required>
                 <input type="email" name="Email" placeholder="Your Email" required>
                 <textarea name="Message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
-            <div class="social-links">
+            <div class="social-links animate-on-scroll">
                 <a href="https://wa.me/254702453346?text=hi%20am%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20and%20am%20intrested%20with%20your%20services.%20can%20i%20get%20more%20information%20about%20what%20you%20can%20do." target="_blank" aria-label="WhatsApp Profile"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:mambomachogu@gmail.com?subject=Service%20Inquiry&body=hi%20am..................and%20am%20intrested%20,%20can%20i%20get%20more%20info%20about%20your%20services" target="_blank" aria-label="Email Me"><i class="fas fa-envelope"></i></a>
                 <a href="https://github.com/machoguderick" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://www.pinterest.com/derickmachogu" target="_blank" aria-label="Pinterest Profile"><i class="fab fa-pinterest"></i></a>
                 <a href="https://twitter.com/YOUR_TWITTER_USERNAME" target="_blank" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
@@ -936,11 +1012,19 @@
                 <a href="https://wa.me/254702453346" target="_blank" class="modal-button whatsapp">
                     <i class="fab fa-whatsapp"></i> View on WhatsApp
                 </a>
-                <a href="https://www.instagram.com/derick_machogu" target="_blank" class="modal-button instagram">
+                <a href="https://www.instagram.com/neo_terric" target="_blank" class="modal-button instagram">
                     <i class="fab fa-instagram"></i> View on Instagram
+                </a>
+                <a href="https://www.pinterest.com/derickmachogu" target="_blank" class="modal-button" style="background:#e60023;">
+                    <i class="fab fa-pinterest"></i> View on Pinterest
                 </a>
             </div>
         </div>
+    </div>
+
+    <!-- Animated Arrow pointing to the floating call icon -->
+    <div class="animated-arrow">
+        <i class="fas fa-arrow-down"></i>
     </div>
 
     <!-- Floating Phone Call Icon -->
@@ -996,6 +1080,35 @@
             if (event.key === 'Escape' && projectOptionsModal.classList.contains('active')) {
                 hideModal();
             }
+        });
+
+        // --- New Scroll Animation Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all elements that should animate
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            // Options for the Intersection Observer
+            const observerOptions = {
+                root: null, // Use the viewport as the root
+                rootMargin: '0px', // No margin
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            // Create a new Intersection Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // If the element is intersecting (visible)
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible'); // Add the class to trigger animation
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe each animated element
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
         });
     </script>
 </body>
