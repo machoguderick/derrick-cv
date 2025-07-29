@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <!-- Updated viewport for Android friendliness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Derrick Machogu | Data Analyst</title>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -48,7 +49,7 @@
                 --header-footer-text: #fff;
                 --accent-primary: #2ecc71;
                 --accent-secondary: #3498db;
-                /* Original --skill-bg: rgba(58, 58, 58, 0.7); */
+                /* Original: --skill-bg: rgba(58, 58, 58, 0.7); */
                 --border-color: #555;
                 --shadow-color: rgba(255, 255, 255, 0.05);
                 --header-shadow: rgba(255, 255, 255, 0.08);
@@ -107,6 +108,8 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             position: relative;
+            /* Remove Android tap highlight */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body::before {
@@ -363,36 +366,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.025);
         }
 
-        .web-design-button-container {
-            text-align: center;
-            margin-top: 2.5rem;
-        }
-
-        .web-design-button {
-            display: inline-block;
-            background: var(--accent-secondary);
-            color: var(--header-footer-text);
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
-            cursor: pointer;
-            min-width: 12rem;
-        }
-
-        .web-design-button:hover {
-            background: color-mix(in srgb, var(--accent-secondary) 90%, black);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
-        }
-
-        .web-design-button i {
-            margin-right: 0.5rem;
-        }
-
         /* Education Section */
         .education-item {
             margin-bottom: 1.5rem;
@@ -481,225 +454,46 @@
             box-shadow: 0 -4px 10px var(--header-shadow);
         }
 
-        /* Modal Styles */
-        .modal-overlay {
+        /* Floating Call Button Styles */
+        .floating-call-btn {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--modal-overlay-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: var(--modal-content-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px var(--modal-shadow);
-            text-align: center;
-            max-width: 25rem;
-            width: 90%;
-            position: relative;
-            transform: translateY(-1rem);
-            transition: transform 0.3s ease;
-            color: var(--text-primary);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-content h3 {
-            color: var(--text-dark-accent);
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-        }
-
-        .modal-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .modal-button {
-            display: block;
-            background: var(--accent-primary);
-            color: var(--header-footer-text);
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px color-mix(in srgb, var(--accent-primary) 30%, transparent);
-        }
-
-        .modal-button.whatsapp {
-            background: #25d366;
-        }
-
-        .modal-button.instagram {
-            background: #c13584;
-        }
-
-        .modal-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.4);
-        }
-
-        .modal-button.whatsapp:hover {
-            background: #128c7e;
-        }
-
-        .modal-button.instagram:hover {
-            background: #833ab4;
-        }
-
-        .modal-button i {
-            margin-right: 0.5rem;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 0.5rem;
-            right: 1rem;
-            font-size: 1.8rem;
-            color: var(--close-button-color);
-            cursor: pointer;
-            transition: color 0.2s ease;
-            line-height: 1;
-        }
-
-        .close-button:hover {
-            color: var(--text-dark-accent);
-        }
-
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--mobile-menu-bg);
-            z-index: 100;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
-
-        .mobile-menu ul li {
-            margin: 1.5rem 0;
-        }
-
-        .mobile-menu ul li a {
-            color: var(--header-footer-text);
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            display: inline-block;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 1.5rem;
             right: 1.5rem;
-            font-size: 2rem;
-            color: var(--header-footer-text);
-            cursor: pointer;
-        }
-
-        /* Floating Phone Call Icon */
-        .floating-call {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 2000;
-            background: #25d366;
+            bottom: 1.5rem;
+            z-index: 1200;
+            background: #27ae60;
             color: #fff;
-            width: 3.5rem;
-            height: 3.5rem;
             border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 4px 16px rgba(39,174,96,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
             font-size: 2rem;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+            transition: background 0.2s;
+            animation: call-pulse 1.2s infinite alternate;
         }
-        .floating-call:hover {
-            background: #128c7e;
-            transform: scale(1.08);
+        .floating-call-btn:hover {
+            background: #219150;
         }
-
-        /* Animated Arrow for Floating Call Icon */
-        .animated-arrow {
-            position: fixed;
-            bottom: 6.5rem; /* Adjust position above the floating icon */
-            right: 3rem; /* Align with the icon */
-            z-index: 1999; /* Below the icon */
-            color: var(--accent-primary); /* Green color for the arrow */
-            font-size: 3rem; /* Large arrow icon */
-            animation: bounceArrow 1.5s infinite ease-in-out; /* Animation */
-            pointer-events: none; /* Allow clicks to pass through to elements below */
-            opacity: 0.9;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Subtle glow */
-        }
-
-        /* Keyframes for arrow animation */
-        @keyframes bounceArrow {
-            0%, 100% {
-                transform: translateY(0);
+        @keyframes call-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 16px rgba(39,174,96,0.3);
             }
-            50% {
-                transform: translateY(-15px); /* Move up and down */
+            100% {
+                transform: scale(1.18);
+                box-shadow: 0 8px 32px rgba(39,174,96,0.45);
             }
         }
-
-        @media (max-width: 600px) {
-            .floating-call {
-                bottom: 1rem;
+        @media (max-width: 480px) {
+            .floating-call-btn {
                 right: 1rem;
-                width: 3rem;
-                height: 3rem;
-                font-size: 1.5rem;
-            }
-            .animated-arrow {
-                bottom: 5rem; /* Adjust for smaller icon */
-                right: 2rem;
-                font-size: 2.5rem;
+                bottom: 1rem;
+                width: 54px;
+                height: 54px;
+                font-size: 1.7rem;
             }
         }
 
@@ -765,11 +559,6 @@
             form {
                 padding: 0.7rem;
             }
-
-            .modal-content {
-                padding: 1rem;
-                max-width: 95vw;
-            }
         }
 
         @media (max-width: 480px) {
@@ -800,9 +589,6 @@
             }
             .section h2 {
                 font-size: 1.2rem;
-            }
-            .modal-content {
-                padding: 0.5rem;
             }
         }
 
@@ -839,6 +625,66 @@
             opacity: 1;
             transform: translateY(0) scale(1) translateX(0);
         }
+    /* Mobile Menu Styles */
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--mobile-menu-bg);
+        z-index: 1000;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .mobile-menu.active {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    .mobile-menu ul li {
+        margin: 1.5rem 0;
+    }
+    .mobile-menu ul li a {
+        color: var(--header-footer-text);
+        font-size: 1.5rem;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    .mobile-menu ul li a:hover {
+        color: var(--accent-primary);
+    }
+    .mobile-menu-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        font-size: 2.5rem;
+        color: var(--header-footer-text);
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 1100;
+        transition: color 0.3s;
+    }
+    .mobile-menu-close:hover {
+        color: var(--accent-primary);
+    }
+    @media (min-width: 769px) {
+        .mobile-menu {
+            display: none !important;
+        }
+    }
     </style>
 </head>
 <body>
@@ -848,10 +694,8 @@
             <h1>Derrick Machogu</h1>
             <p>Passionate Data Analyst | JKUAT Graduate</p>
             <div class="header-buttons">
-                <button id="viewProjectsBtn" class="header-button">
-                    <i class="fas fa-project-diagram"></i> View Projects
-                </button>
-                <a href="https://www.mediafire.com/file/wxrmm10bnqbwxfq/Blue_Light_Financial_Analyst_Simple_Profile_Resume_CV.pdf/file" target="_blank" class="header-button secondary">
+                <!-- Removed "View Projects" button as requested -->
+                <a href="https://www.mediafire.com/file/wxrmm10bnqbwxfq/Blue_Light_Financial_Analyst_Simple_Profile_Resume_CV.pdf/file" target="_blank" class="header-button secondary" id="downloadCV">
                     <i class="fas fa-download"></i> Download CV
                 </a>
             </div>
@@ -947,11 +791,7 @@
                 <p><small>Technologies: SQL, Tableau, Data Cleaning</small></p>
             </div>
 
-            <div class="web-design-button-container">
-                <a href="https://www.pinterest.com/derickmachogu" target="_blank" class="web-design-button animate-on-scroll">
-                    <i class="fas fa-laptop-code"></i> Explore Web Designs
-                </a>
-            </div>
+            <!-- Removed "Explore Web Designs" button container as requested -->
         </div>
     </section>
 
@@ -1004,32 +844,8 @@
         </div>
     </footer>
 
-    <!-- Project Options Modal -->
-    <div id="projectOptionsModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button" id="closeModalBtn">&times;</span>
-            <h3>Where would you like to view my projects?</h3>
-            <div class="modal-buttons">
-                <a href="https://wa.me/254702453346" target="_blank" class="modal-button whatsapp">
-                    <i class="fab fa-whatsapp"></i> View on WhatsApp
-                </a>
-                <a href="https://www.instagram.com/neo_terric" target="_blank" class="modal-button instagram">
-                    <i class="fab fa-instagram"></i> View on Instagram
-                </a>
-                <a href="https://www.pinterest.com/derickmachogu" target="_blank" class="modal-button" style="background:#e60023;">
-                    <i class="fab fa-pinterest"></i> View on Pinterest
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Animated Arrow pointing to the floating call icon -->
-    <div class="animated-arrow">
-        <i class="fas fa-arrow-down"></i>
-    </div>
-
-    <!-- Floating Phone Call Icon -->
-    <a href="tel:+254702453346" class="floating-call" title="Call Derrick Machogu">
+    <!-- Floating Call Button -->
+    <a href="tel:+254702453346" class="floating-call-btn" aria-label="Call Derrick Machogu">
         <i class="fas fa-phone"></i>
     </a>
 
@@ -1052,35 +868,6 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
             });
-        });
-
-        // Project Modal Functionality
-        const viewProjectsBtn = document.getElementById('viewProjectsBtn');
-        const projectOptionsModal = document.getElementById('projectOptionsModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-
-        function showModal() {
-            projectOptionsModal.classList.add('active');
-        }
-
-        function hideModal() {
-            projectOptionsModal.classList.remove('active');
-        }
-
-        viewProjectsBtn.addEventListener('click', showModal);
-        closeModalBtn.addEventListener('click', hideModal);
-        
-        projectOptionsModal.addEventListener('click', (event) => {
-            if (event.target === projectOptionsModal) {
-                hideModal();
-            }
-        });
-
-        // Close modal when pressing Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && projectOptionsModal.classList.contains('active')) {
-                hideModal();
-            }
         });
 
         // --- New Scroll Animation Logic ---
@@ -1110,6 +897,15 @@
             animatedElements.forEach(element => {
                 observer.observe(element);
             });
+
+            // Download CV button redirect
+            const downloadCV = document.getElementById('downloadCV');
+            if (downloadCV) {
+                downloadCV.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.open('https://drive.google.com/file/d/1LHfautmhMucUIhDC0Qsfawxzt5L7JVDk/view?usp=drive_link', '_blank');
+                });
+            }
         });
     </script>
 </body>
