@@ -63,6 +63,7 @@
                 /* New variables for light blue skills in dark mode */
                 --dm-skill-bg-dark: #ADD8E6; /* Light Blue for skill background */
                 --dm-skill-text-dark: #2c3e50; /* Dark blue-grey for text/icons on light blue */
+                --skill-bg: var(--dm-skill-bg-dark);
             }
 
             /* Apply new variables to skill elements in dark mode */
@@ -181,7 +182,7 @@
             font-weight: bold;
             font-size: clamp(0.9rem, 3vw, 1.1rem);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-primary) 50%, transparent);
+            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.5);
             cursor: pointer;
             border: none;
             min-width: 10rem;
@@ -189,18 +190,18 @@
 
         .header-button.secondary {
             background: var(--accent-secondary);
-            box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-secondary) 50%, transparent);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.5);
         }
 
         .header-button:hover {
-            background: color-mix(in srgb, var(--accent-primary) 90%, black);
+            background: #159c88;
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px color-mix(in srgb, var(--accent-primary) 60%, transparent);
+            box-shadow: 0 6px 15px rgba(26, 188, 156, 0.6);
         }
 
         .header-button.secondary:hover {
-            background: color-mix(in srgb, var(--accent-secondary) 90%, black);
-            box-shadow: 0 6px 15px color-mix(in srgb, var(--accent-secondary) 60%, transparent);
+            background: #217dbb;
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.6);
         }
 
         .header-button i {
@@ -321,7 +322,7 @@
             transform: translateY(-0.5rem);
             background: var(--accent-primary);
             color: var(--header-footer-text);
-            box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-primary) 40%, transparent);
+            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.4);
         }
 
         .skill i {
@@ -359,7 +360,7 @@
 
         .project:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px color-mix(in srgb, var(--project-shadow) 50%, transparent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.025);
         }
 
         .web-design-button-container {
@@ -377,7 +378,7 @@
             font-weight: bold;
             font-size: clamp(1rem, 3vw, 1.2rem);
             transition: all 0.3s ease;
-            box-shadow: 0 6px 15px color-mix(in srgb, var(--accent-secondary) 40%, transparent);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
             cursor: pointer;
             min-width: 12rem;
         }
@@ -385,7 +386,7 @@
         .web-design-button:hover {
             background: color-mix(in srgb, var(--accent-secondary) 90%, black);
             transform: translateY(-4px);
-            box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-secondary) 50%, transparent);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
         }
 
         .web-design-button i {
@@ -557,7 +558,7 @@
 
         .modal-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px color-mix(in srgb, var(--accent-primary) 40%, transparent);
+            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.4);
         }
 
         .modal-button.whatsapp:hover {
